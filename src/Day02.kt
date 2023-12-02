@@ -1,6 +1,4 @@
 import java.lang.IllegalArgumentException
-
-enum class Colors{RED, GREEN, BLUE}
 data class Turn(var red: Int = 0, var green: Int = 0, var blue: Int = 0){
     fun setColor(colorName: String?, value: Int?){
         if (value != null && colorName != null) {
