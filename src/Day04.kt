@@ -16,16 +16,15 @@ fun main() {
     fun part2(input: ArrayList<ScratchTicket>): Int {
         var cardsPlayed = 0
         input.forEachIndexed { index, ticket ->
-            for(k in 0..<ticket.timesToPlay){
-                cardsPlayed++
-                var found = 0
-                ticket.numbers.forEach { if (ticket.winningNumbers.contains(it)) found++}
-                //println("Playing card $index+1, won $found numbers")
-                for(i in index+1..index+found){
+            var found = 0
+            ticket.numbers.forEach { if (ticket.winningNumbers.contains(it)) found++}
+            cardsPlayed+=ticket.timesToPlay
+             //println("Playing card $index+1, won $found numbers")
+            for(i in index+1..index+found){
                     if(i >= input.size) break
-                    input[i].timesToPlay++
-                }
+                    input[i].timesToPlay += ticket.timesToPlay
             }
+
         }
         return cardsPlayed
     }
