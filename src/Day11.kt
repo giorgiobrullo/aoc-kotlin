@@ -3,7 +3,7 @@ fun main() {
 
     fun explore(input: List<List<String>>, y: Int, x: Int, steps: Int, destination: Pair<Int, Int>, markTable: Array<Array<Boolean>>, queue: ArrayDeque<Triple<Int, Int, Int>>) : Int {
         if(y == destination.first && x == destination.second) {
-            return steps;
+            return steps
         }
         else {
             val add = if(input[y][x] == "#") 1 else input[y][x].toInt()
@@ -17,7 +17,7 @@ fun main() {
         return 0
     }
 
-    fun part1(input: List<List<String>>): Long {
+    fun work(input: List<List<String>>): Long {
         input.forEach{println(it)}
         val galaxies = input.mapIndexed{y, row -> row.mapIndexed{x, v -> if(v == "#") listOf(y, x) else null}}.flatten().filterNotNull()
         println("Galaxies: $galaxies")
@@ -54,17 +54,11 @@ fun main() {
     }
 
 
-    fun part2(input: List<String>): Int {
-        return 0
-    }
-
     val input = readInput("Day11")
-    val boolInput = input.map{s -> s.map{ it != '.' }}
-    //println(boolInput)
 
     //expandedGalaxy.forEach { println(it) }
-    //println(part1(expanded(input, 2)))
-    println(part1(expanded(input, 1000000)))
+    println(work(expanded(input, 2)))
+    println(work(expanded(input, 1000000)))
 }
 
 private fun expanded(input: List<String>, times: Int): List<List<String>> {
