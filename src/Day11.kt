@@ -1,26 +1,28 @@
 fun main() {
 
 
-    fun explore(input: List<List<Boolean>>, y: Int, x: Int, steps: Int, destination: Pair<Int, Int>, markTable: Array<Array<Boolean>>, queue: ArrayDeque<Triple<Int, Int, Int>>) : Int {
+    fun explore(input: List<List<String>>, y: Int, x: Int, steps: Int, destination: Pair<Int, Int>, markTable: Array<Array<Boolean>>, queue: ArrayDeque<Triple<Int, Int, Int>>) : Int {
         if(y == destination.first && x == destination.second) {
             return steps;
         }
         else {
+            val add = if(input[y][x] == "#") 1 else input[y][x].toInt()
             markTable[y][x] = true
-            if(y-1 >= 0 && !markTable[y-1][x] && !queue.any{it.first == y-1 && it.second == x}) queue.add(Triple(y-1, x, steps+1))
-            if(x-1 >= 0 && !markTable[y][x-1] && !queue.any{it.first == y && it.second == x-1}) queue.add(Triple(y, x-1, steps+1))
-            if(y+1 < input.size && !markTable[y+1][x] && !queue.any{it.first == y+1 && it.second == x}) queue.add(Triple(y+1, x, steps+1))
-            if(x+1 < input[0].size && !markTable[y][x+1] && !queue.any{it.first == y && it.second == x+1}) queue.add(Triple(y, x+1, steps+1))
+            if(y-1 >= 0 && !markTable[y-1][x] && !queue.any{it.first == y-1 && it.second == x}) queue.add(Triple(y-1, x, steps+add))
+            if(x-1 >= 0 && !markTable[y][x-1] && !queue.any{it.first == y && it.second == x-1}) queue.add(Triple(y, x-1, steps+add))
+            if(y+1 < input.size && !markTable[y+1][x] && !queue.any{it.first == y+1 && it.second == x}) queue.add(Triple(y+1, x, steps+add))
+            if(x+1 < input[0].size && !markTable[y][x+1] && !queue.any{it.first == y && it.second == x+1}) queue.add(Triple(y, x+1, steps+add))
         }
 
         return 0
     }
 
-    fun part1(input: List<List<Boolean>>): Int {
-        val galaxies = input.mapIndexed{y, row -> row.mapIndexed{x, v -> if(v) listOf(y, x) else null}}.flatten().filterNotNull()
+    fun part1(input: List<List<String>>): Long {
+        input.forEach{println(it)}
+        val galaxies = input.mapIndexed{y, row -> row.mapIndexed{x, v -> if(v == "#") listOf(y, x) else null}}.flatten().filterNotNull()
         println("Galaxies: $galaxies")
 
-        var count = 0
+        var count : Long = 0
         var pairs = 0
 
         galaxies.forEachIndexed { s, coords ->
@@ -61,27 +63,33 @@ fun main() {
     //println(boolInput)
 
     //expandedGalaxy.forEach { println(it) }
-    println(part1(expanded(boolInput, 2)))
-    //println(part1(expanded(boolInput, 1000000)))
+    //println(part1(expanded(input, 2)))
+    println(part1(expanded(input, 1000000)))
 }
 
-private fun expanded(input: List<List<Boolean>>, times: Int): List<List<Boolean>> {
+private fun expanded(input: List<String>, times: Int): List<List<String>> {
     // Row
     val rowIndexes: ArrayList<Int> = ArrayList()
     input.forEachIndexed { index, r ->
-        if (r.all { !it }) rowIndexes.add(index)
+        if (r.all { it == '.' }) rowIndexes.add(index)
     }
-    val expandedRows = input.map { listOf(it) }.flatMapIndexed { index, it -> if (rowIndexes.contains(index)) generateSequence { it }.take(times).toList() else listOf(it) }.flatten()
+    val expandedRows = input.mapIndexed { index, it -> it.map{
+        if (rowIndexes.contains(index)) times.toString()
+        else if(it == '.') "1" else it.toString()
+    }
+    }
 
     println("Expanded rows!")
 
     // Columns
     val colIndexes: ArrayList<Int> = ArrayList()
     for (col in expandedRows[0].indices) {
-        if (expandedRows.all { !it[col] }) colIndexes.add(col)
+        if (expandedRows.all { it[col] != "#" }) colIndexes.add(col)
     }
 
-    val expandedGalaxy = expandedRows.map { it.flatMapIndexed { index, v -> if (colIndexes.contains(index)) generateSequence { v }.take(times).toList() else listOf(v) } }
+    val expandedGalaxy = expandedRows.map { it.mapIndexed { index, v ->
+        if (colIndexes.contains(index)) (v.toInt()*times).toString()
+        else v } }
 
     println("Expanded complete galaxy!")
 
