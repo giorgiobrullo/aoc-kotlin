@@ -1,25 +1,32 @@
-# aoc-kotlin
+<div align="center">
+  <h1>🎄 Advent of Code Solutions</h1>
+  
+  <p>My personal solutions for Advent of Code challenges in Kotlin</p>
 
-Welcome to the Advent of Code[^aoc] Kotlin project created by [giorgiobrullo][github] using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
+  <div align="center">
+    <img src="https://img.shields.io/badge/Kotlin-1.9.0-purple?style=for-the-badge&logo=kotlin" alt="Kotlin" />
+  </div>
+</div>
 
-In this repository, giorgiobrullo is about to provide solutions for the puzzles using [Kotlin][kotlin] language.
+## 📅 Solutions by Year
 
-If you're stuck with Kotlin-specific questions or anything related to this template, check out the following resources:
+### [2023](/2023/kotlin)
+Solutions for Advent of Code 2023. Each day contains two parts, implemented in Kotlin.
 
-- [Kotlin docs][docs]
-- [Kotlin Slack][slack]
-- Template [issue tracker][issues]
+### [2024](/2024/?)
+Coming soon...
+## ⭐ Progress
+
+2023: 11/25 (Incomplete)  
+2024: Coming soon
+
+## 🛠️ Setup
+
+This project uses the [Advent of Code Kotlin Template][template] by JetBrains.
 
 
-[^aoc]:
-    [Advent of Code][aoc] – An annual event of Christmas-oriented programming challenges started December 2015.
-    Every year since then, beginning on the first day of December, a programming puzzle is published every day for twenty-five days.
-    You can solve the puzzle and provide an answer using the language of your choice.
+## 📝 Notes
 
-[aoc]: https://adventofcode.com
-[docs]: https://kotlinlang.org/docs/home.html
-[github]: https://github.com/giorgiobrullo
-[issues]: https://github.com/kotlin-hands-on/advent-of-code-kotlin-template/issues
-[kotlin]: https://kotlinlang.org
-[slack]: https://surveys.jetbrains.com/s3/kotlin-slack-sign-up
-[template]: https://github.com/kotlin-hands-on/advent-of-code-kotlin-template
+- Solutions are my personal attempts and may not be the most optimal
+- Feel free to use these solutions as reference, but try to solve the puzzles yourself first!
+- Each year's folder contains its own README with specific notes and learnings
