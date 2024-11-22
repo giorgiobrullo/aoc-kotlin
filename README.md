@@ -10,7 +10,7 @@
 
 ## 📅 Solutions by Year
 
-### [2023](/2023/kotlin)
+### [2023](/)
 Solutions for Advent of Code 2023. Each day contains two parts, implemented in Kotlin.
 
 ### [2024](/2024/?)
